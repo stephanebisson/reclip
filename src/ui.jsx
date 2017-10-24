@@ -42,18 +42,22 @@ class InputSuggestion extends React.Component {
 		this.filterEntries( '' )
 	}
 	componentDidMount() {
-		this.scrollableContainerNode = this.props.scrollableContainerNode || window
+		this.scrollableContainerNode = this.props.scrollableContainerNode
 
 		console.log( this.clippableNode, this.clippableContainer, this.scrollableContainerNode )
 	}
-	handleChange( event ) {
-		this.filterEntries( event.target.value )
-		clip(
+	componentDidUpdate() {
+		let css = clip(
 			{},
 			this.clippableNode,
 			this.scrollableContainerNode,
 			this.clippableContainer // Technically, not necessary
-		);
+		)
+
+		this.setState( s => s.style = css; s )
+	}
+	handleChange( event ) {
+		this.filterEntries( event.target.value )
 	}
 	filterEntries( input ) {
 		let suggestions = input ?
@@ -71,7 +75,7 @@ class InputSuggestion extends React.Component {
 					value={ this.state.input } 
 					onChange={ this.handleChange.bind( this ) } />
 				<div className="suggestions-box" ref={ e => this.clippableContainer = e }>
-					<div className="suggestions" ref={ e => this.clippableNode = e }>
+					<div className="suggestions" ref={ e => this.clippableNode = e } style={ this.state.style }>
 						{this.state.suggestions.map( s => <Item key={s} item={s} /> )}
 					</div>
 					<Footer />

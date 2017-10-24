@@ -1,4 +1,4 @@
-import { $, jQuery } from 'jquery';
+import $ from 'jquery';
 
 // OO.ui.Element.static.getDocument
 // Get the document of an element
@@ -17,7 +17,7 @@ var	getElementDocument = function ( obj ) {
 	},
 	// OO.ui.Element.static.getWindow
 	getWindow = function ( obj ) {
-		doc = getElementDocument( obj );
+		var doc = getElementDocument( obj );
 		return doc ? doc.defaultView : window;
 	},
 	clip = function (
@@ -41,7 +41,7 @@ var	getElementDocument = function ( obj ) {
 
 		$clippableContainer = $( clippableContainerNode );
 		$clippable = $( clippableNode );
-		$clippableScrollableContainer = $( scrollableContainerNode );
+		$clippableScrollableContainer = $( scrollableContainerNode || 'body' );
 
 		$clippableScroller = $clippableScrollableContainer.is( 'html, body' ) ?
 			// OO.ui.Element.static.getWindow( $clippableScrollableContainer )
