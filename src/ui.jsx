@@ -1,4 +1,5 @@
 import React from 'react'
+import clip from './functions'
 
 const entries = [
 	'Amsterdam',
@@ -47,6 +48,12 @@ class InputSuggestion extends React.Component {
 	}
 	handleChange( event ) {
 		this.filterEntries( event.target.value )
+		clip(
+			{},
+			this.clippableNode,
+			this.scrollableContainerNode,
+			this.clippableContainer // Technically, not necessary
+		);
 	}
 	filterEntries( input ) {
 		let suggestions = input ?
