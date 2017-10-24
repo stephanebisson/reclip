@@ -1,5 +1,6 @@
 import React from 'react'
 import clip from './functions'
+import $ from 'jquery';
 
 const entries = [
 	'Amsterdam',
@@ -47,14 +48,14 @@ class InputSuggestion extends React.Component {
 		console.log( this.clippableNode, this.clippableContainer, this.scrollableContainerNode )
 	}
 	componentDidUpdate() {
-		let css = clip(
+		let style = clip(
 			{},
 			this.clippableNode,
 			this.scrollableContainerNode,
 			this.clippableContainer // Technically, not necessary
 		)
 
-		this.setState( s => s.style = css; s )
+		$( this.clippableNode ).css( style );
 	}
 	handleChange( event ) {
 		this.filterEntries( event.target.value )
@@ -69,13 +70,13 @@ class InputSuggestion extends React.Component {
 	render() {
 		return (
 			<div>
-				<input type="text" 
+				<input type="text"
 					autoFocus
 					placeholder="Type here..."
-					value={ this.state.input } 
+					value={ this.state.input }
 					onChange={ this.handleChange.bind( this ) } />
 				<div className="suggestions-box" ref={ e => this.clippableContainer = e }>
-					<div className="suggestions" ref={ e => this.clippableNode = e } style={ this.state.style }>
+					<div className="suggestions" ref={ e => this.clippableNode = e }>
 						{this.state.suggestions.map( s => <Item key={s} item={s} /> )}
 					</div>
 					<Footer />
