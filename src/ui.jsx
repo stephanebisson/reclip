@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 const entries = [
 	'Amsterdam',
@@ -34,6 +35,9 @@ class InputSuggestion extends React.Component {
 	}
 	componentWillMount() {
 		this.filterEntries( '' )
+	}
+	componentDidMount() {
+		let rawNode = ReactDOM.findDOMNode(this)
 	}
 	handleChange( event ) {
 		this.filterEntries( event.target.value )
