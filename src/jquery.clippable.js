@@ -22,7 +22,6 @@ var	getElementDocument = function ( obj ) {
 	},
 	clip = function (
 		idealDimensions,
-		scrollableContainerNode,
 		// Optional
 		clippableContainerNode
 	) {
@@ -42,7 +41,7 @@ var	getElementDocument = function ( obj ) {
 
 		$clippableContainer = $( clippableContainerNode );
 		$clippable = $( clippableNode );
-		$clippableScrollableContainer = $( scrollableContainerNode || 'body' );
+		$clippableScrollableContainer = $( 'body' );
 
 		$clippableScroller = $clippableScrollableContainer.is( 'html, body' ) ?
 			// OO.ui.Element.static.getWindow( $clippableScrollableContainer )

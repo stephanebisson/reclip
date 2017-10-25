@@ -52,7 +52,6 @@ class InputSuggestion extends React.Component {
 	doClip() {
 		$( this.clippableNode ).clip( {
 			idealSize: {},
-			scrollableContainer: this.scrollableContainerNode,
 			clippableContainer: this.clippableContainer
 		} )
 	}
