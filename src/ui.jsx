@@ -1,6 +1,6 @@
 import React from 'react'
-import clip from './functions'
 import $ from 'jquery'
+import './jquery.clippable'
 
 const entries = [
 	'Amsterdam',
@@ -50,12 +50,11 @@ class InputSuggestion extends React.Component {
 		this.doClip()
 	}
 	doClip() {
-		$( this.clippableNode ).css( clip(
-			{},
-			this.clippableNode,
-			this.scrollableContainerNode,
-			this.clippableContainer // Technically, not necessary
-		) )
+		$( this.clippableNode ).clip( {
+			idealSize: {},
+			scrollableContainer: this.scrollableContainerNode,
+			clippableContainer: this.clippableContainer
+		} )
 	}
 	handleChange( event ) {
 		this.filterEntries( event.target.value )

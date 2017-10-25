@@ -22,7 +22,6 @@ var	getElementDocument = function ( obj ) {
 	},
 	clip = function (
 		idealDimensions,
-		clippableNode,
 		scrollableContainerNode,
 		// Optional
 		clippableContainerNode
@@ -36,6 +35,8 @@ var	getElementDocument = function ( obj ) {
 			naturalWidth, naturalHeight, clipWidth, clipHeight,
 			buffer = 7, // Chosen by fair dice roll
 			result = {};
+
+		clippableNode = this;
 
 		clippableContainerNode = clippableContainerNode || clippableNode;
 
@@ -113,8 +114,12 @@ var	getElementDocument = function ( obj ) {
 		// this.clippedHorizontally = clipWidth;
 		// this.clippedVertically = clipHeight;
 
-		// This should be applied to clippableNode
+		$clippable.css( result );
+		
+		// already applied but returning the data just for fun
 		return result;
 	};
 
-export default clip;
+$.fn.clip = clip;
+
+// export default clip;
