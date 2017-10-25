@@ -1,6 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
-import './jquery.clippable'
+import { Clippable, ClippableArea } from './clippable.jsx'
 
 const entries = [
 	'Amsterdam',
@@ -27,7 +26,7 @@ const entries = [
 
 const Item = ( { item } ) =>
 	<div className="suggestion">
-		<span>{item}</span>
+		<span>{ item }</span>
 	</div>
 
 const Footer = () =>
@@ -36,24 +35,8 @@ const Footer = () =>
 	</div>
 
 class InputSuggestion extends React.Component {
-	constructor( props ) {
-	    super( props )
-	}
 	componentWillMount() {
 		this.filterEntries( '' )
-	}
-	componentDidMount() {
-		this.scrollableContainerNode = this.props.scrollableContainerNode
-		this.doClip()
-	}
-	componentDidUpdate() {
-		this.doClip()
-	}
-	doClip() {
-		$( this.clippableNode ).clip( {
-			idealSize: {},
-			clippableContainer: this.clippableContainer
-		} )
 	}
 	handleChange( event ) {
 		this.filterEntries( event.target.value )
@@ -73,12 +56,12 @@ class InputSuggestion extends React.Component {
 					placeholder="Type here..."
 					value={ this.state.input }
 					onChange={ this.handleChange.bind( this ) } />
-				<div className="suggestions-box" ref={ e => this.clippableContainer = e }>
-					<div className="suggestions" ref={ e => this.clippableNode = e }>
+				<Clippable className="suggestions-box">
+					<ClippableArea className="suggestions">
 						{this.state.suggestions.map( s => <Item key={s} item={s} /> )}
-					</div>
+					</ClippableArea>
 					<Footer />
-				</div>
+				</Clippable>
 			</div>
 		)
 	}

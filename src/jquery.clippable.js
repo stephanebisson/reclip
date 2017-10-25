@@ -33,9 +33,8 @@ var	getElementDocument = function ( obj ) {
 			desiredWidth, desiredHeight, allotedWidth, allotedHeight,
 			naturalWidth, naturalHeight, clipWidth, clipHeight,
 			buffer = 7, // Chosen by fair dice roll
-			result = {};
-
-		clippableNode = this;
+			result = {},
+			clippableNode = this;
 
 		clippableContainerNode = clippableContainerNode || clippableNode;
 
