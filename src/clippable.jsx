@@ -9,21 +9,15 @@ export class Clippable extends React.Component {
 		let clippableArea = $( this.clippableContainer ).find( '.clippable-area' )
 		this.clippableNode = clippableArea.length ? clippableArea[0] : this.clippableContainer
 
-		// $( this.clippableNode ).clippable();
 		$( this.clippableNode ).clippable( {
 			$clippableContainer: $( this.clippableContainer )
 		} );
-
-		// this.doClip()
-	}
-	componentDidUnmount() {
-		$( this.clippableNode ).destroy()
 	}
 	componentDidUpdate() {
-		this.doClip()
-	}
-	doClip() {
 		$( this.clippableNode ).clip()
+	}
+	componentWillUnmount() {
+		$( this.clippableNode ).unclippable()
 	}
 	render() {
 		return <div className={ this.props.className + ' clippable' }>{ this.props.children }</div>
